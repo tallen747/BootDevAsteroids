@@ -63,6 +63,13 @@ def main():
                 print("Game over!")
                 sys.exit()
 
+            for shot in shots:
+                if asteroid.collideswith(shot):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    asteroid.kill()
+                    
+
         #Draw the player to the screen after it's filled with black, but before it's flipped!
         for drawable_obj in drawable:
             drawable_obj.draw(screen)
