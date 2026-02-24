@@ -1,6 +1,7 @@
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
+from player import Player
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -14,6 +15,9 @@ def main():
     clock_obj = pygame.time.Clock()
     dt = 0
 
+    #Instantiate a Player object
+    player_one = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
     #Inifinite Loop!
     while(True):
         log_state()
@@ -25,12 +29,20 @@ def main():
 
         screen.fill("black")
 
-        #Refresh the screen - last!
-        pygame.display.flip()
-
         #Clock obj will pause 1/60 per loop; returns time in ms (/1000 = sec)
         dt = clock_obj.tick(60) / 1000
         #print(f"dt: {dt}") #see that it's working and generally stable
+
+        #Update the player's state before rendering...
+        player_one.update(dt)
+
+        #Draw the player to the screen after it's filled with black, but before it's flipped!
+        player_one.draw(screen)
+
+        #Refresh the screen - last!
+        pygame.display.flip()
+
+        
 
 
 if __name__ == "__main__":
