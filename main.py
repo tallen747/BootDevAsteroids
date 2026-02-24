@@ -11,6 +11,9 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    clock_obj = pygame.time.Clock()
+    dt = 0
+
     #Inifinite Loop!
     while(True):
         log_state()
@@ -24,6 +27,11 @@ def main():
 
         #Refresh the screen - last!
         pygame.display.flip()
+
+        #Clock obj will pause 1/60 per loop; returns time in ms (/1000 = sec)
+        dt = clock_obj.tick(60) / 1000
+        #print(f"dt: {dt}") #see that it's working and generally stable
+
 
 if __name__ == "__main__":
     main()
