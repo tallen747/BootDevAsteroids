@@ -4,3 +4,7 @@ PLAYER_RADIUS = 20 #radius of player's ship; recommend 20
 LINE_WIDTH = 2 #width of lines that draw the player's ship; recommend 2
 PLAYER_TURN_SPEED = 300 #turn speed of the player; recommend 300
 PLAYER_SPEED = 200 #fwd and back speed; recommend 200
+ASTEROID_MIN_RADIUS = 20
+ASTEROID_KINDS = 3
+ASTEROID_SPAWN_RATE_SECONDS = 0.8
+ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
