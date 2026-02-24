@@ -1,10 +1,11 @@
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import *
 from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 import sys
+from shot import Shot
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -18,11 +19,11 @@ def main():
     clock_obj = pygame.time.Clock()
     dt = 0
 
-    #Two New Groups
+    #Groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
-    
+    shots = pygame.sprite.Group()
 
     #Adding the Player class to the groups before the player obj instance is created
     Player.containers = (updatable, drawable)
@@ -30,6 +31,8 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
 
     AsteroidField.containers = (updatable)
+
+    Shot.containers = (shots, drawable, updatable)
 
     #Instantiate a Player object
     player_one = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
