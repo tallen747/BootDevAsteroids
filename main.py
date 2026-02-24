@@ -15,8 +15,17 @@ def main():
     clock_obj = pygame.time.Clock()
     dt = 0
 
+    #Two New Groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    #Adding the Player class to the groups before the player obj instance is created
+    Player.containers = (updatable, drawable)
+
     #Instantiate a Player object
     player_one = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+
 
     #Inifinite Loop!
     while(True):
@@ -34,10 +43,11 @@ def main():
         #print(f"dt: {dt}") #see that it's working and generally stable
 
         #Update the player's state before rendering...
-        player_one.update(dt)
+        updatable.update(dt)
 
         #Draw the player to the screen after it's filled with black, but before it's flipped!
-        player_one.draw(screen)
+        for drawable_obj in drawable:
+            drawable_obj.draw(screen)
 
         #Refresh the screen - last!
         pygame.display.flip()
